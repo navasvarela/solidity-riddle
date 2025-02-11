@@ -1,22 +1,9 @@
 import { SignerWithAddress } from "@nomicfoundation/hardhat-ethers/signers";
-import { StandardMerkleTree } from "@openzeppelin/merkle-tree";
 import { expect } from "chai";
 import { ethers } from "hardhat";
 
 import type { OnchainRiddle } from "../../types/OnchainRiddle";
 import type { OnchainRiddle__factory } from "../../types/factories/OnchainRiddle__factory";
-
-export function genProofAndRoot(values: any, key: any, encoding: string[]): [string, string[]] {
-  const tree = StandardMerkleTree.of(values, encoding);
-  const root = tree.root;
-  for (const [i, v] of tree.entries()) {
-    if (v[1] == key[1]) {
-      const proof = tree.getProof(i);
-      return [root, proof];
-    }
-  }
-  return ["", []];
-}
 
 describe("OnchainRiddle", function () {
   let riddleContract: OnchainRiddle, bot: SignerWithAddress, user: SignerWithAddress;

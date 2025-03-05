@@ -1,0 +1,8 @@
+packages:
+# The frontend package, implements the website
+  - 'frontend'
+# The backend package, implements the bot that updates the riddles.
+  - 'backend'
+ 
+  # exclude packages that are inside test directories
+  - '!**/test/**'
